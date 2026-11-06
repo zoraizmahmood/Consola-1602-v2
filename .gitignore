@@ -15,3 +15,9 @@ Thumbs.db
 *.kicad_prl
 fp-info-cache
 *.lck
+
+# Fotos originales del movil (pesan mucho; en assets/ van las versiones recortadas)
+*.HEIC
+*.heic
+*.DNG
+*.dng

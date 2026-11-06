@@ -1,10 +1,14 @@
 # Carcasa v2
 
-Aquí van los archivos de la carcasa diseñada para la PCB de la v2.
+Bandeja a medida de la PCB de la Consola 1602 v2.
 
-| Archivo          | Formato    | Para qué sirve                              |
-|------------------|------------|---------------------------------------------|
-| `carcasa-v2.f3d` | Fusion 360 | Fuente editable, con el historial de diseño |
-| `carcasa-v2.stl` | Malla STL  | Lista para laminar e imprimir               |
+<p align="center">
+  <img src="../../assets/carcasa-v2.png" alt="Render de la carcasa v2" width="420">
+</p>
 
-> Pendiente de subir.
+| Archivo            | Formato | Para qué sirve                                          |
+|--------------------|---------|---------------------------------------------------------|
+| `carcasa-v2.step`  | STEP    | Sólido editable en cualquier CAD                        |
+| `carcasa-v2.3mf`   | 3MF     | Listo para abrir en el laminador e imprimir             |
+
+Medidas exteriores: 91,75 × 67,75 × 20,6 mm.

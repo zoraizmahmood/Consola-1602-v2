@@ -5,7 +5,7 @@
 > La segunda versión de la [Consola 1602](https://github.com/zoraizmahmood/Consola-1602): el mismo firmware, pero ahora sobre una **PCB propia** diseñada en KiCad y fabricada por **PCBWay**. Adiós a la protoboard y a los cables sueltos.
 
 <p align="center">
-  <img src="assets/pcb-3d.png" alt="Render 3D de la PCB de la Consola 1602 v2" width="720">
+  <img src="assets/placa-montada.jpg" alt="La PCB de la Consola 1602 v2 con el LCD y los botones montados" width="720">
 </p>
 
 La v1 era un Arduino Uno, un LCD de 16x2, cinco botones y un zumbador unidos con cables dupont. Funcionaba, pero cualquier golpe soltaba un cable y no había forma de meterla en una caja decente. La v2 convierte todo ese cableado en un **shield** que se enchufa directamente encima del Arduino Uno: un único bloque compacto que entra en una carcasa a medida.
@@ -30,9 +30,15 @@ Todas las aplicaciones de la v1 siguen ahí: reloj con dígitos grandes, Snake, 
 ## La placa
 
 <p align="center">
-  <img src="assets/pcb-top.png" alt="Cara superior de la PCB" width="420">
-  <img src="assets/pcb-bottom.png" alt="Cara inferior de la PCB" width="420">
+  <img src="assets/placa-cara-superior.jpg" alt="Cara superior de la PCB sin componentes" width="420">
+  <img src="assets/placa-cara-inferior.jpg" alt="Cara inferior de la PCB sin componentes" width="420">
 </p>
+<p align="center"><sub>La placa tal como llegó de PCBWay: máscara negra y serigrafía blanca. Cara superior a la izquierda, inferior a la derecha.</sub></p>
+
+<p align="center">
+  <img src="assets/pcb-3d.png" alt="Render 3D de la PCB en KiCad" width="560">
+</p>
+<p align="center"><sub>El mismo diseño renderizado en KiCad antes de mandarlo a fabricar.</sub></p>
 
 | Característica      | Valor                          |
 |---------------------|--------------------------------|
@@ -84,12 +90,10 @@ Esta versión existe gracias a que **PCBWay patrocinó la fabricación de las pl
 
 **En resumen:** pasar de la protoboard a una PCB fabricada ha sido el salto más grande del proyecto. Ver tu propio diseño convertido en una placa real, con tu nombre en la serigrafía, es otra cosa. Si estás pensando en hacer tu primera PCB, hazla.
 
-<!-- Añade aquí fotos reales:
 <p align="center">
-  <img src="assets/foto-placas.jpg" alt="Las placas recién llegadas de PCBWay" width="420">
-  <img src="assets/foto-montada.jpg" alt="La consola montada" width="420">
+  <img src="assets/placas-pcbway.jpg" alt="Las placas recién llegadas de PCBWay" width="560">
 </p>
--->
+<p align="center"><sub>El lote recién sacado del paquete.</sub></p>
 
 ---
 
@@ -137,13 +141,18 @@ Los pines **A4** y **A5** siguen libres para añadir un RTC DS3231.
 
 ## Carcasa
 
-La carcasa de la v2 está rediseñada para la PCB. Los archivos irán en [`hardware/carcasa/`](hardware/carcasa/).
+La carcasa de la v2 está rediseñada a medida de la PCB: una bandeja de 91,75 × 67,75 × 20,6 mm con esquinas redondeadas, un reborde interior en el borde superior, dos tetones de fijación en el fondo y una ventana lateral para los conectores.
 
-<!-- Añade aquí un render de la carcasa:
 <p align="center">
   <img src="assets/carcasa-v2.png" alt="Render de la carcasa v2" width="480">
 </p>
--->
+
+| Archivo | Formato | Para qué sirve |
+|---------|---------|----------------|
+| [`hardware/carcasa/carcasa-v2.step`](hardware/carcasa/carcasa-v2.step) | STEP | Sólido editable en cualquier CAD (Fusion 360, FreeCAD, Onshape…) |
+| [`hardware/carcasa/carcasa-v2.3mf`](hardware/carcasa/carcasa-v2.3mf) | 3MF | Listo para abrir en el laminador (Bambu Studio, PrusaSlicer, Cura…) |
+
+### Ajustes de impresión
 
 | Parámetro          | Valor        |
 |--------------------|--------------|
@@ -192,8 +201,10 @@ Consola-1602-v2/
 │   │   ├── placa.kicad_pcb  # Diseño de la placa
 │   │   ├── gerbers/         # Gerber y taladros
 │   │   └── gerbers-pcbway.zip
-│   └── carcasa/             # Carcasa v2 (Fusion 360 + STL)
-├── assets/                  # Renders, esquema en PDF y fotos
+│   └── carcasa/
+│       ├── carcasa-v2.step  # Sólido editable
+│       └── carcasa-v2.3mf   # Listo para laminar
+├── assets/                  # Fotos, renders y esquema en PDF
 └── .github/workflows/
     └── build.yml            # Compilación automática para arduino:avr:uno
 ```
