@@ -5,8 +5,9 @@
 > La segunda versión de la [Consola 1602](https://github.com/zoraizmahmood/Consola-1602): el mismo firmware, pero ahora sobre una **PCB propia** diseñada en KiCad y fabricada por **PCBWay**. Adiós a la protoboard y a los cables sueltos.
 
 <p align="center">
-  <img src="assets/placa-montada.jpg" alt="La PCB de la Consola 1602 v2 con el LCD y los botones montados" width="720">
+  <img src="assets/placa-montada.jpg" alt="La PCB de la Consola 1602 v2 con el LCD y los botones colocados, todavía sin soldar" width="720">
 </p>
+<p align="center"><sub>El LCD y los botones colocados en su sitio, todavía sin soldar (ver <a href="#estado-del-montaje">estado del montaje</a>).</sub></p>
 
 La v1 era un Arduino Uno, un LCD de 16x2, cinco botones y un zumbador unidos con cables dupont. Funcionaba, pero cualquier golpe soltaba un cable y no había forma de meterla en una caja decente. La v2 convierte todo ese cableado en un **shield** que se enchufa directamente encima del Arduino Uno: un único bloque compacto que entra en una carcasa a medida.
 
@@ -89,11 +90,17 @@ Esta versión existe gracias a que **PCBWay patrocinó la fabricación de las pl
 
 **Diseñar la primera PCB.** Hasta ahora todo lo había montado en protoboard, así que pasar a KiCad fue empezar de cero: esquema, asignar huellas, colocar componentes y rutar pistas. Lo más difícil no fue el rutado, sino decidir dónde iba cada cosa para que la placa encajara sobre el Arduino Uno y a la vez quedara cómoda en la mano.
 
-**El pedido.** Subí el ZIP con los Gerber y del resto se encargó su equipo de atención al cliente. Elegí FR-4 de dos capas, 1,6 mm y **máscara negra con serigrafía blanca**. PCBWay se hizo cargo también del IVA, así que el paquete llegó a Barcelona sin sorpresas en la aduana.
+**El pedido.** Subí el ZIP con los Gerber y del resto se encargó su equipo de atención al cliente. Pedí cinco placas en FR-4 de dos capas, 1,6 mm, acabado HASL y **máscara negra con serigrafía blanca**. PCBWay se hizo cargo también del IVA, así que el paquete llegó a Barcelona sin sorpresas en la aduana.
 
 **La calidad: excelente.** El paquete llegó **perfectamente empaquetado** y las placas, impecables: la serigrafía se lee nítida hasta en los textos más pequeños, la máscara negra está bien alineada con los pads y todos los taladros encajan con los componentes. El acabado negro queda muy bien; parece un producto de verdad, no un prototipo.
 
-**Lo que cambiaría.** La resistencia de la retroiluminación (R1). En el diseño elegí una huella **SMD 0805**, una de esas resistencias diminutas que se sueldan con estación de aire caliente o con mucho pulso, en vez de una resistencia normal de patillas. Es la única pieza SMD de la placa: todo lo demás es de inserción y se suelda sin problema con un soldador normal. En la próxima versión usaré una resistencia de inserción (huella `R_Axial_DIN0207`), para que toda la placa se pueda montar con un soldador básico. Si te fijas en los Gerber (`placa-F_Cu.gbr`) o en la foto de la cara superior, son los dos pads pequeños marcados como `R1` junto al zumbador.
+**Lo que cambiaría.** La resistencia de la retroiluminación (R1). En el diseño elegí una huella **SMD 0805**, una de esas resistencias diminutas que se sueldan con estación de aire caliente o con mucho pulso, en vez de una resistencia normal de patillas. Es la única pieza SMD de la placa: todo lo demás es de inserción. En la próxima versión usaré una resistencia de inserción (huella `R_Axial_DIN0207`), para que toda la placa se pueda montar con un soldador básico. Si te fijas en los Gerber (`placa-F_Cu.gbr`) o en la foto de la cara superior, son los dos pads pequeños marcados como `R1` junto al zumbador.
+
+### Estado del montaje
+
+**La placa todavía no está soldada.** Tengo todos los componentes, pero mi soldador no está a la altura: es un modelo básico que no calienta lo suficiente ni tiene una punta lo bastante fina para esta placa. Intentándolo **estropeé dos de las cinco placas**. Eso es culpa de mi herramienta y de mi técnica, no de las placas: las otras tres siguen perfectas.
+
+Cuando tenga un soldador mejor (de temperatura regulable y punta fina), montaré una de las tres que quedan y actualizaré este README con fotos de la consola terminada y funcionando. Mientras tanto, el firmware se puede probar en el simulador con el [`diagram.json`](diagram.json).
 
 **En resumen:** pasar de la protoboard a una PCB fabricada ha sido el salto más grande del proyecto. Ver tu propio diseño convertido en una placa real, con tu nombre en la serigrafía, es otra cosa. Si estás pensando en hacer tu primera PCB, hazla.
 
