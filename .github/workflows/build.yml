@@ -1,0 +1,46 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar arduino-cli
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Preparar core y librerias
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install arduino:avr
+          arduino-cli lib install LiquidCrystal
+
+      - name: Compilar
+        run: |
+          # arduino-cli exige que la carpeta se llame igual que el .ino.
+          # En lugar de depender de eso, detectamos el sketch y lo
+          # copiamos a una carpeta con el nombre correcto.
+          shopt -s nullglob
+          INOS=(*.ino)
+          if [ ${#INOS[@]} -eq 0 ]; then
+            echo "::error::No hay ningun .ino en la raiz del repositorio"
+            echo "Contenido actual:"
+            ls -la
+            exit 1
+          fi
+          INO="${INOS[0]}"
+          echo "Sketch detectado: $INO"
+
+          mkdir -p /tmp/ci/sketch
+          cp "$INO" /tmp/ci/sketch/sketch.ino
+
+          arduino-cli compile \
+            --fqbn arduino:avr:uno \
+            --warnings all \
+            /tmp/ci/sketch

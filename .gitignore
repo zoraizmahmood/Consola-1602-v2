@@ -1,0 +1,17 @@
+# Compilacion de Arduino
+build/
+*.hex
+*.elf
+*.bin
+*.eep
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# KiCad: historial local, backups y preferencias de usuario
+.history/
+*-backups/
+*.kicad_prl
+fp-info-cache
+*.lck
