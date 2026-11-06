@@ -98,7 +98,7 @@ Esta versión existe gracias a que **PCBWay patrocinó la fabricación de las pl
 
 ### Estado del montaje
 
-**La placa todavía no está soldada.** Tengo todos los componentes, pero mi soldador no está a la altura: es un modelo básico que no calienta lo suficiente ni tiene una punta lo bastante fina para esta placa. Intentándolo **estropeé dos de las cinco placas**. Eso es culpa de mi herramienta y de mi técnica, no de las placas: las otras tres siguen perfectas.
+**La placa todavía no está soldada.** Tengo todos los componentes, pero mi soldador es bastante malo y no está a la altura de esta placa. Intentándolo **estropeé dos de las cinco placas**. Eso es culpa de mi herramienta y de mi técnica, no de las placas: las otras tres siguen perfectas.
 
 Cuando tenga un soldador mejor (de temperatura regulable y punta fina), montaré una de las tres que quedan y actualizaré este README con fotos de la consola terminada y funcionando. Mientras tanto, el firmware se puede probar en el simulador con el [`diagram.json`](diagram.json).
 
