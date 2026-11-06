@@ -19,7 +19,7 @@ La v1 era un Arduino Uno, un LCD de 16x2, cinco botones y un zumbador unidos con
 | Montaje | Protoboard y cables dupont | Shield PCB de dos capas que se enchufa al Uno |
 | Contraste del LCD | Potenciómetro de 10 kΩ | Sin potenciómetro: V0 conectado a D8 |
 | Zumbador | D8 | A2 |
-| Resistencia de la retro | 220 Ω de inserción | R1 SMD 0805 |
+| Resistencia de la retro | 220 Ω de inserción | R1 SMD 0805 (ver [lo que cambiaría](#mi-experiencia-con-pcbway)) |
 | Carcasa | Pensada para el Uno suelto | Nueva, a medida de la PCB |
 | Firmware | v1.1 | v2.0 (mismas aplicaciones, pines adaptados) |
 
@@ -74,19 +74,26 @@ Los cinco botones forman una cruceta a la izquierda (`◄` `▲` `▼` `►`) y 
 
 ## Mi experiencia con PCBWay
 
-Esta versión existe gracias a que **PCBWay patrocinó la fabricación de las placas**. Lo dejo claro desde el principio: no he pagado las PCB. Lo que cuento aquí es mi experiencia real, incluidos los fallos (que fueron míos, no de ellos).
+Esta versión existe gracias a que **PCBWay patrocinó la fabricación de las placas**. Lo dejo claro desde el principio: no he pagado las PCB. Lo que cuento aquí es mi experiencia real, incluido lo que cambiaría (que es culpa mía, no de ellos).
 
-**Diseñar la primera PCB.** Hasta ahora todo lo había montado en protoboard, así que pasar a KiCad fue empezar de cero: esquema, asignar huellas, colocar componentes y rutar pistas. Lo más difícil no fue el rutado, sino decidir dónde iba cada cosa para que la placa encajara sobre el Arduino Uno y a la vez quedara cómoda en la mano. [COMPLETAR: cuánto tardaste en diseñarla, qué te costó más, si seguiste algún tutorial]
+### Cronología
 
-**El pedido.** Subir los Gerber fue rápido: la web los procesa al momento y enseña una vista previa de cada capa, lo que sirve para comprobar que no falta nada antes de pagar. [COMPLETAR: si hubo revisión manual del diseño, si te contactaron por algo, color de máscara y acabado elegidos]
+| Fecha        | Qué pasó                                                              |
+|--------------|-----------------------------------------------------------------------|
+| 13 de agosto | PCBWay se pone en contacto conmigo tras ver la v1                     |
+| 17 de agosto | Diseño terminado en KiCad y Gerber listos                             |
+| 18 de agosto | Pedido registrado                                                     |
+| 19 de agosto | Placas fabricadas y enviadas                                          |
 
-**El tiempo.** [COMPLETAR: días de fabricación, días de envío y a qué país, si hubo aduanas]
+**Del primer correo a tener los Gerber pasaron solo cuatro días**, y desde que se registró el pedido hasta que salió de fábrica, **poco más de un día**.
 
-**La calidad.** [COMPLETAR: cómo llegaron (embalaje, cantidad), nitidez de la serigrafía, alineación de la máscara, si todos los taladros eran del tamaño correcto]
+**Diseñar la primera PCB.** Hasta ahora todo lo había montado en protoboard, así que pasar a KiCad fue empezar de cero: esquema, asignar huellas, colocar componentes y rutar pistas. Lo más difícil no fue el rutado, sino decidir dónde iba cada cosa para que la placa encajara sobre el Arduino Uno y a la vez quedara cómoda en la mano.
 
-**El montaje.** [COMPLETAR: cómo fue soldar, si todo encajó a la primera, si el LCD y los botones quedaron bien alineados]
+**El pedido.** Subí el ZIP con los Gerber y del resto se encargó su equipo de atención al cliente. Elegí FR-4 de dos capas, 1,6 mm y **máscara negra con serigrafía blanca**. PCBWay se hizo cargo también del IVA, así que el paquete llegó a Barcelona sin sorpresas en la aduana.
 
-**Lo que haría distinto.** [COMPLETAR: errores de diseño que encontraste al montar, qué cambiarías en una v3]
+**La calidad: excelente.** El paquete llegó **perfectamente empaquetado** y las placas, impecables: la serigrafía se lee nítida hasta en los textos más pequeños, la máscara negra está bien alineada con los pads y todos los taladros encajan con los componentes. El acabado negro queda muy bien; parece un producto de verdad, no un prototipo.
+
+**Lo que cambiaría.** La resistencia de la retroiluminación (R1). En el diseño elegí una huella **SMD 0805**, una de esas resistencias diminutas que se sueldan con estación de aire caliente o con mucho pulso, en vez de una resistencia normal de patillas. Es la única pieza SMD de la placa: todo lo demás es de inserción y se suelda sin problema con un soldador normal. En la próxima versión usaré una resistencia de inserción (huella `R_Axial_DIN0207`), para que toda la placa se pueda montar con un soldador básico. Si te fijas en los Gerber (`placa-F_Cu.gbr`) o en la foto de la cara superior, son los dos pads pequeños marcados como `R1` junto al zumbador.
 
 **En resumen:** pasar de la protoboard a una PCB fabricada ha sido el salto más grande del proyecto. Ver tu propio diseño convertido en una placa real, con tu nombre en la serigrafía, es otra cosa. Si estás pensando en hacer tu primera PCB, hazla.
 
@@ -106,12 +113,14 @@ Esta versión existe gracias a que **PCBWay patrocinó la fabricación de las pl
 | LCD 16x2 con HD44780 (WC1602A o similar)| LCD1      | 1        |
 | Pulsador táctil 6×6 mm de inserción     | SW1–SW5   | 5        |
 | Zumbador activo de 5 V, 12 mm           | BZ1       | 1        |
-| Resistencia 220 Ω, SMD 0805             | R1        | 1        |
+| Resistencia 220 Ω, SMD 0805 ⚠️          | R1        | 1        |
 | Tira de pines de 2,54 mm 1x8            | J1, J4    | 2        |
 | Tira de pines de 2,54 mm 1x10           | J2        | 1        |
 | Tira de pines de 2,54 mm 1x6            | J3        | 1        |
 
 Ya no hace falta el potenciómetro de 10 kΩ ni la protoboard.
+
+> ⚠️ **R1 es SMD (0805)**, la única pieza de montaje superficial. Para soldarla viene bien una estación de aire caliente, o un soldador de punta fina con pinzas y flux.
 
 ---
 
